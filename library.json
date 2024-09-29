@@ -1,6 +1,6 @@
 {
   "name": "AsyncWebserverUtils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Request and response utilities to be used with ESPAsyncWebServer",
   "keywords": "request, response, json, espasyncwebserver",
   "repository":

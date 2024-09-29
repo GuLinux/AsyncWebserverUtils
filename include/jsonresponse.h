@@ -1,6 +1,7 @@
 #ifndef APB_JSON_RESPONSE_H
 #define APB_JSON_RESPONSE_H
 
+#include <AsyncJson.h>
 #include <ESPAsyncWebServer.h>
 #include <ArduinoJson.h>
 
