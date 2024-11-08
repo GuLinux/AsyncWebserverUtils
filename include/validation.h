@@ -29,7 +29,7 @@ struct Validation {
     }
 
     Validation &number(const char *key) {
-        if(valid()) {
+        if(valid() && json[key].is<JsonVariant>()) {
             if(!json[key].is<float>()) sprintf(errorMessage, "Value for `%s` is not a number", key);
         }
         return *this;
