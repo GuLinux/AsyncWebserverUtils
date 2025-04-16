@@ -1,6 +1,6 @@
 {
   "name": "AsyncWebserverUtils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Request and response utilities to be used with ESPAsyncWebServer",
   "keywords": "request, response, json, espasyncwebserver",
   "repository":
@@ -22,7 +22,9 @@
   "dependencies": {
     "AsyncTCP": "ESP32Async/AsyncTCP",
     "ESPAsyncWebServer": "ESP32Async/ESPAsyncWebServer",
-    "ArduinoJson": "bblanchon/ArduinoJson@^7.2.0"
+    "ArduinoJson": "bblanchon/ArduinoJson@^7.2.0",
+    "ElegantOTA": "ayushsharma82/ElegantOTA@^3.1.7",
+    "ArduinoLog": "thijse/ArduinoLog@^1.1.1"
   },
   "frameworks": "arduino",
   "platforms": "expressif32"

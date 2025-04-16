@@ -3,12 +3,16 @@
 
 
 #include <ArduinoJson.h>
+#include <functional>
 #include <forward_list>
 
 
 class Validation {
 
 public:
+    using IfValid=std::function<void()>;
+    using IfInvalid=std::function<void(const char*)>;
+
     Validation(JsonVariant json) : _json(json) {
     }
 
@@ -64,7 +68,23 @@ public:
         return *this;
     }
 
+    virtual Validation &ifValid(const IfValid &ifValid) {
+        _ifValid = ifValid;
+        return *this;
+    }
+
+    virtual Validation &ifInvalid(const IfInvalid &ifInvalid) {
+        _ifInvalid = ifInvalid;
+        return *this;
+    }
+
     virtual ~Validation() {
+        if(_ifValid && valid()) {
+            _ifValid();
+        }
+        if(_ifInvalid && invalid()) {
+            _ifInvalid(_errorMessage);
+        }
     }
 
     JsonVariant json() {
@@ -73,10 +93,10 @@ public:
     const char *errorMessage() const {
         return _errorMessage;
     }
-
-
 private:
     JsonVariant _json;
+    IfValid _ifValid;
+    IfInvalid _ifInvalid;
     char _errorMessage[512] = {0};
 };
 
