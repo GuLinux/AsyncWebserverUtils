@@ -1,6 +1,6 @@
 {
   "name": "AsyncWebserverUtils",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Request and response utilities to be used with ESPAsyncWebServer",
   "keywords": "request, response, json, espasyncwebserver",
   "repository":
@@ -27,5 +27,7 @@
     "ArduinoLog": "thijse/ArduinoLog@^1.1.1"
   },
   "frameworks": "arduino",
-  "platforms": "expressif32"
+  "platforms": [
+      "espressif32"
+  ]
 }
