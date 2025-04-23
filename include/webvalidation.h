@@ -10,9 +10,9 @@
 class WebValidation : public Validation {
 public:
     WebValidation(AsyncWebServerRequest *request, JsonVariant json, int status=400) : Validation(json), _status{status} {
-        Validation::ifInvalid([this, status, request](const char *errorMessage) {
+        Validation::ifInvalid([this, status, request](JsonVariant json, const char *errorMessage) {
             if(_ifInvalid) {
-                _ifInvalid(errorMessage);
+                _ifInvalid(json, errorMessage);
             }
             JsonResponse::error(_status, errorMessage, request);
         });

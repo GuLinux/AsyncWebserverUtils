@@ -10,8 +10,8 @@
 class Validation {
 
 public:
-    using IfValid=std::function<void()>;
-    using IfInvalid=std::function<void(const char*)>;
+    using IfValid=std::function<void(JsonVariant)>;
+    using IfInvalid=std::function<void(JsonVariant, const char*)>;
 
     Validation(JsonVariant json) : _json(json) {
     }
@@ -80,10 +80,10 @@ public:
 
     virtual ~Validation() {
         if(_ifValid && valid()) {
-            _ifValid();
+            _ifValid(_json);
         }
         if(_ifInvalid && invalid()) {
-            _ifInvalid(_errorMessage);
+            _ifInvalid(_json, _errorMessage);
         }
     }
 
@@ -93,6 +93,7 @@ public:
     const char *errorMessage() const {
         return _errorMessage;
     }
+protected:
 private:
     JsonVariant _json;
     IfValid _ifValid;
