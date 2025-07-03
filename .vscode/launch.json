@@ -12,31 +12,31 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_c3_mini/firmware.elf",
-            "projectEnvName": "lolin_c3_mini",
-            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-riscv32-esp/bin",
+            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_s3_mini/firmware.elf",
+            "projectEnvName": "lolin_s3_mini",
+            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-xtensa-esp32s3/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug (lolin_c3_mini)"
+                "task": "Pre-Debug (lolin_s3_mini)"
             }
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_c3_mini/firmware.elf",
-            "projectEnvName": "lolin_c3_mini",
-            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-riscv32-esp/bin",
+            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_s3_mini/firmware.elf",
+            "projectEnvName": "lolin_s3_mini",
+            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-xtensa-esp32s3/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_c3_mini/firmware.elf",
-            "projectEnvName": "lolin_c3_mini",
-            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-riscv32-esp/bin",
+            "executable": "/home/marco/Projects/PlatformIO/Libraries/AsyncWebserverUtils/.pio/build/lolin_s3_mini/firmware.elf",
+            "projectEnvName": "lolin_s3_mini",
+            "toolchainBinDir": "/home/marco/.platformio/packages/toolchain-xtensa-esp32s3/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
         }

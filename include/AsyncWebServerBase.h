@@ -4,14 +4,14 @@
 #include <ESPAsyncWebServer.h>
 #include <unistd.h>
 #include <AsyncJson.h>
-#include "jsonresponse.h"
+#include "jsonwebresponse.h"
 #include <functional>
 
 class AsyncWebServerBase {
 public:
     AsyncWebServerBase(uint16_t port = 80);
 protected:
-    using JsonResponseCustomiser = std::function<void(AsyncWebServerRequest*, JsonResponse&)>;
+    using JsonResponseCustomiser = std::function<void(AsyncWebServerRequest*, JsonWebResponse&)>;
     AsyncWebServer webserver;
     void setupElegantOTA();
     void setupCors();

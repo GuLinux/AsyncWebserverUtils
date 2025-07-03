@@ -1,20 +1,20 @@
 #include "validation.h"
 #ifdef PIO_UNIT_TESTING
 #include "mocks/ESPAsyncWebServer.h"
-#include "mocks/jsonresponse.h"
+#include "mocks/jsonwebresponse.h"
 #else
 #include <ESPAsyncWebServer.h>
-#include "jsonresponse.h"
+#include "jsonwebresponse.h"
 #endif
 
 class WebValidation : public Validation {
 public:
-    WebValidation(AsyncWebServerRequest *request, JsonVariant json, int status=400) : Validation(json), _status{status} {
-        Validation::ifInvalid([this, status, request](JsonVariant json, const char *errorMessage) {
+    WebValidation(AsyncWebServerRequest *request, JsonVariant json, JsonResponse::Status statusOnError=JsonResponse::BadRequest) : Validation(json), _statusOnError{statusOnError} {
+        Validation::ifInvalid([this, request](JsonVariant json, const char *errorMessage) {
             if(_ifInvalid) {
                 _ifInvalid(json, errorMessage);
             }
-            JsonResponse::error(_status, errorMessage, request);
+            JsonWebResponse::error(_statusOnError, errorMessage, request);
         });
     }
 
@@ -24,9 +24,9 @@ public:
     }
 
     int status() const {
-        return _status;
+        return _statusOnError;
     }
 private:
-    int _status = 400;
+    JsonResponse::Status _statusOnError;
     IfInvalid _ifInvalid;
 };

@@ -28,7 +28,7 @@ void AsyncWebServerBase::setupCors() {
 
 void AsyncWebServerBase::setupJsonNotFoundPage(const JsonResponseCustomiser customiser) {
     webserver.onNotFound([customiser](AsyncWebServerRequest *request){
-        JsonResponse response(request, 404);
+        JsonWebResponse response(request, JsonResponse::Status::NotFound);
         response.root()["error"] = "NotFound";
         response.root()["url"] = request->url();
         if(customiser) {

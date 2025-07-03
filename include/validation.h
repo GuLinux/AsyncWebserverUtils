@@ -5,7 +5,7 @@
 #include <ArduinoJson.h>
 #include <functional>
 #include <forward_list>
-
+#include "jsonresponse.h"
 
 class Validation {
 
@@ -19,6 +19,10 @@ public:
     bool valid() const { return strlen(_errorMessage) == 0; }
     bool invalid() const { return !valid(); }
     void clear() { _errorMessage[0] = 0; }
+
+    JsonResponse errorResponse(JsonResponse::Status statusOnError=JsonResponse::BadRequest) const {
+        return JsonResponse::error(statusOnError, _errorMessage);
+    }
 
     template<typename T> Validation &required(const char *key) {
         if(valid() && !_json[key].is<T>()) {

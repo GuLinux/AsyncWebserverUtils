@@ -1,13 +1,8 @@
 #include "commons.h"
 #include "test_validation.h"
 #include "test_webvalidation.h"
-// uncomment line below if you plan to use GMock
-// #include <gmock/gmock.h>
 
-// TEST(...)
-// TEST_F(...)
-
-JsonResponseMock *JsonResponse::mock = new JsonResponseMock();
+JsonWebResponseMock *JsonWebResponse::mock = new JsonWebResponseMock();
 
 #if defined(ARDUINO)
 

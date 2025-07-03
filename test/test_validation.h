@@ -11,7 +11,7 @@ TEST(Validation, itShouldBeValidByDefault) {
 
 TEST(Validation, itShouldExecuteCallbackWhenValid) {
     bool called = false;
-    Validation::IfValid callback = [&called](){ called = true; };
+    Validation::IfValid callback = [&called](JsonVariant){ called = true; };
     {
         Validation validation{JsonObject()};
         validation.ifValid(callback);
@@ -30,7 +30,7 @@ TEST(Validation, itShouldBeInvalidOnRequiredKeys) {
 
 TEST(Validation, itShouldExecuteCallbackWhenInvalid) {
     bool called = false;
-    Validation::IfInvalid callback = [&called](const char *){ called = true; };
+    Validation::IfInvalid callback = [&called](JsonVariant, const char *){ called = true; };
     Validation{JsonObject()}
         .required<int>("key")
         .ifInvalid(callback);
