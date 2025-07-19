@@ -11,12 +11,11 @@ class JsonWebResponse: public JsonResponse {
 public:
     JsonWebResponse(AsyncWebServerRequest *request, Status status=Ok, int statusCode=-1)
         : JsonResponse{status}, _request{request}, _statusCode{statusCode} {
-        _response = new AsyncJsonResponse(false);
         static const std::unordered_map<Status, int> status2code {
             {Ok,200}, {Created,201}, {BadRequest,400}, {Unauthorized,401}, {NotFound, 404}, {InternalError,500},
         };
         if(statusCode <= 0) {
-            statusCode = status2code.at(status);
+            _statusCode = status2code.at(status);
         }
     }
 
@@ -25,9 +24,10 @@ public:
     }
 
     ~JsonWebResponse() {
-        _response->setCode(_statusCode);
-        _response->setLength();
-        _request->send(_response);
+        AsyncResponseStream *response = _request->beginResponseStream(JSON_CONTENT_TYPE);
+        response->setCode(_statusCode);
+        serializeJson(_json, *response);
+        _request->send(response);
     }
 
 
@@ -36,7 +36,6 @@ public:
     }
 private:
     AsyncWebServerRequest *_request;
-    AsyncJsonResponse *_response;
     int _statusCode;
 
 };
